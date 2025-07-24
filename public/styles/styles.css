@@ -25,3 +25,8 @@ h1{
   height: 50px; 
   font-size: 35px;
 }
+
+.play-button:hover {
+  box-shadow: 0 0 20px 5px red;
+  transition: box-shadow 0.3s ease-in-out;
+}
