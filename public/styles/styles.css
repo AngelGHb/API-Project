@@ -30,3 +30,23 @@ h1{
   box-shadow: 0 0 20px 5px red;
   transition: box-shadow 0.3s ease-in-out;
 }
+
+.hit-button {
+  background-color: green;
+  color:white;
+  border: 0px;
+  margin-top: 400px;
+  width: 100px;
+  height: 50px; 
+  font-size: 35px;
+}
+
+.stand-button {
+  background-color: yellow;
+  color:white;
+  border: 0px;
+  margin-top: 400px;
+  width: 100px;
+  height: 50px; 
+  font-size: 35px;
+}
