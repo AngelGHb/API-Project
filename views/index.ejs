@@ -2,8 +2,32 @@
 <html lang="en" dir="ltr">
   <%- include('partials/head') %>
   <body>
-    <h1> Jackblack </h1>
+    <h1>Jackblack</h1>
+    <% if (content) { %>
+    <div class="cards-container">
+      <% content.forEach(card => { %>
+      <div class="card">
+        <img
+          src="<%= card.image %>"
+          alt="<%= card.value %> of <%= card.suit %>"
+        />
+        <p><%= card.value %> of <%= card.suit %></p>
+      </div>
+      <% }); %>
+    </div>
+    <% } %> <% if (content) { %>
+    <p class="error"><%= content %></p>
+    <% } %>
 
+<<<<<<< HEAD
     <button class = 'play-button'> Play </button>
   </body>
+=======
+    <form method="POST" action="/play">
+      <button type="submit" class="play-button">Play</button>
+    </form>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js\index.js" charset="utf-8"></script>
+>>>>>>> 89ef1b0c61d446a8415098b820ef288db935ded4
 </html>
