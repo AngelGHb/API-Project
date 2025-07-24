@@ -8,11 +8,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.set('views engine', 'views')
+app.set('views', '/Users/ttp/Documents/GitHub/A Simple Card Game/Untitled/API-Project/views')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.render(__dirname +"/views/index.ejs");
 });
 
 app.listen(port, () => {
