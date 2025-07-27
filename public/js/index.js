@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const playButton = document.querySelector('.play-button');
-  const hitButton = document.querySelector('.hit-button');
-  const standButton = document.querySelector('stand-button');
+  // const hitButton = document.querySelector('.hit-button');
+  // const standButton = document.querySelector('stand-button');
 
   // Game start/play pressed
   playButton.addEventListener('click', () => {
@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Deal
     //Unhide game buttons
-    hitButton.style.display = 'block'
-    
-    hitButton.addEventListener('click', () => {
-      console.log('Hit');
-    });
+    // hitButton.style.display = 'block'
 
-    standButton.addEventListener('click', () => {
-      console.log('Stand');
-    });
+    // hitButton.addEventListener('click', () => {
+    //   console.log('Hit');
+    // });
+
+    // standButton.addEventListener('click', () => {
+    //   console.log('Stand');
+    // });
+    
   });
 });
