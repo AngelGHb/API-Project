@@ -27,7 +27,7 @@ function calculateScore(cards) {
       total += parseInt(card.value, 10);
     }
   }
-  
+
   while (total > 21 && aces > 0) {
     total -= 10; // Treat ace as 1 instead of 11
     aces--;
@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 
 // START A NEW GAME
 app.post("/play", async (req, res) => {
-  console.log('button clicked')
+  // console.log("button clicked");
   try {
     const deckResponse = await axios.get(API_URL + "new/shuffle/?deck_count=1");
     const deckId = deckResponse.data.deck_id;
@@ -75,16 +75,14 @@ app.post("/hit", async (req, res) => {
   if (!game || game.status !== "playing") return res.redirect("/");
 
   try {
-    const card = await axios.get(
-      API_URL + game.deckId + "/draw/?count=1"
-    );
+    const card = await axios.get(API_URL + game.deckId + "/draw/?count=1");
     game.player.hand.push(card.data.cards[0]);
     game.player.score = calculateScore(game.player.hand);
 
     if (game.player.score > 21) {
       game.status = "lose";
     } else if (game.player.score === 21) {
-      return res.redirect("/stand"); // auto-stand
+      return res.status(307).redirect("/stand"); // auto-stand
     }
 
     res.redirect("/");
@@ -95,15 +93,13 @@ app.post("/hit", async (req, res) => {
 });
 
 // STAND
-app.post("/stand", async (req, res) => {
+app.all("/stand", async (req, res) => {
   if (!game || game.status !== "playing") return res.redirect("/");
 
   try {
     // Dealer draws until 17
     while (game.dealer.score < 17) {
-      const card = await axios.get(
-        API_URL + game.deckId + "/draw/?count=1"
-      );
+      const card = await axios.get(API_URL + game.deckId + "/draw/?count=1");
       game.dealer.hand.push(card.data.cards[0]);
       game.dealer.score = calculateScore(game.dealer.hand);
     }
