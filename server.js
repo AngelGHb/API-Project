@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const API_URL = "https://deckofcardsapi.com/api/deck/";
 
 // Use a simple in-memory game state (replace with session if needed)
@@ -121,6 +121,4 @@ app.post("/stand", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
-});
+app.listen(port, () => console.log(`Server on ${port}`));
