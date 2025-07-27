@@ -4,52 +4,60 @@
   <body>
     <h1>Jackblack</h1>
     <% if (!game) { %>
-      <!-- PLAY BUTTON (Start Game) -->
-      <form method="POST" action="/play">
-        <button type="submit" class="play-button">Play</button>
-      </form>
+    <!-- PLAY BUTTON (Start Game) -->
+    <form method="POST" action="/play">
+      <button type="submit" class="play-button">Play</button>
+    </form>
     <% } else { %>
-      <div class="game-board">
-        <!-- Dealer Section -->
-        <h2>Dealer (<%= game.status === 'playing' ? '?' : game.dealer.score %>)</h2>
-        <div class="cards-container">
-          <% game.dealer.hand.forEach((card, idx) => { %>
-            <% if (idx === 1 && game.status === 'playing') { %>
-              <img src="/images/back.png" alt="Hidden Card" />
-            <% } else { %>
-              <img src="<%= card.image %>" alt="<%= card.value %> of <%= card.suit %>" />
-            <% } %>
-          <% }); %>
-        </div>
-        <!-- Player Section -->
-        <h2>Player (<%= game.player.score %>)</h2>
-        <div class="cards-container">
-          <% game.player.hand.forEach(card => { %>
-            <img src="<%= card.image %>" alt="<%= card.value %> of <%= card.suit %>" />
-          <% }); %>
-        </div>
-        <!-- Game Buttons -->
-        <% if (game.status === 'playing') { %>
-          <form method="POST" action="/hit">
-            <button type="submit" class="hit-button">Hit</button>
-          </form>
-          <form method="POST" action="/stand">
-            <button type="submit" class="stand-button">Stand</button>
-          </form>
+    <div class="game-board">
+      <!-- Dealer Section -->
+      <h2>
+        Dealer (<%= game.status === 'playing' ? '?' : game.dealer.score %>)
+      </h2>
+      <div class="cards-container">
+        <% game.dealer.hand.forEach((card, idx) => { %> <% if (idx === 1 &&
+        game.status === 'playing') { %>
+        <img
+          src="https://deckofcardsapi.com/static/img/back.png"
+          alt="Hidden Card"
+        />
         <% } else { %>
-          <!-- Result Message -->
-          <h2 class="result">
-            <% if (game.status === 'win') { %> 🎉 You Win! 
-            <% } else if (game.status === 'lose') { %> ❌ You Lose! 
-            <% } else { %> 🤝 It's a Push! 
-            <% } %>
-          </h2>
-          <!-- PLAY AGAIN BUTTON -->
-          <form method="POST" action="/play">
-            <button type="submit" class="play-again-button">Play Again</button>
-          </form>
-        <% } %>
+        <img
+          src="<%= card.image %>"
+          alt="<%= card.value %> of <%= card.suit %>"
+        />
+        <% } %> <% }); %>
       </div>
+      <!-- Player Section -->
+      <h2>Player (<%= game.player.score %>)</h2>
+      <div class="cards-container">
+        <% game.player.hand.forEach(card => { %>
+        <img
+          src="<%= card.image %>"
+          alt="<%= card.value %> of <%= card.suit %>"
+        />
+        <% }); %>
+      </div>
+      <!-- Game Buttons -->
+      <% if (game.status === 'playing') { %>
+      <form method="POST" action="/hit">
+        <button type="submit" class="hit-button">Hit</button>
+      </form>
+      <form method="POST" action="/stand">
+        <button type="submit" class="stand-button">Stand</button>
+      </form>
+      <% } else { %>
+      <!-- Result Message -->
+      <h2 class="result">
+        <% if (game.status === 'win') { %> 🎉 You Win! <% } else if (game.status
+        === 'lose') { %> ❌ You Lose! <% } else { %> 🤝 It's a Push! <% } %>
+      </h2>
+      <!-- PLAY AGAIN BUTTON -->
+      <form method="POST" action="/play">
+        <button type="submit" class="play-again-button">Play Again</button>
+      </form>
+      <% } %>
+    </div>
     <% } %>
   </body>
 </html>
