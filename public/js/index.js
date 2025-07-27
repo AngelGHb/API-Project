@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const playButton = document.querySelector('.play-button');
-  const hitButton = document.querySelector('.hit-button');
-  const standButton = document.querySelector('.stand-button');
+  const buttons = document.querySelectorAll('.play-button, .hit-button, .stand-button, .play-again-button');
 
-  // Optional: Disable the button after click to avoid double-submit
-  [playButton, hitButton, standButton].forEach(btn => {
-    if (btn) {
-      btn.addEventListener('click', () => btn.setAttribute('disabled', 'true'));
-    }
+  buttons.forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      const form = btn.closest('form');
+      if (!form) return;
+      // prevent the browser's default submit first
+      e.preventDefault();
+      btn.disabled = true;           // now it's safe to disable
+      form.submit();                 // submit manually
+    });
   });
 });

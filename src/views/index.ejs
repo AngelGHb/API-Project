@@ -3,7 +3,6 @@
   <%- include('partials/head') %>
   <body>
     <h1>Jackblack</h1>
-
     <% if (!game) { %>
       <!-- PLAY BUTTON (Start Game) -->
       <form method="POST" action="/play">
@@ -22,7 +21,6 @@
             <% } %>
           <% }); %>
         </div>
-
         <!-- Player Section -->
         <h2>Player (<%= game.player.score %>)</h2>
         <div class="cards-container">
@@ -30,7 +28,6 @@
             <img src="<%= card.image %>" alt="<%= card.value %> of <%= card.suit %>" />
           <% }); %>
         </div>
-
         <!-- Game Buttons -->
         <% if (game.status === 'playing') { %>
           <form method="POST" action="/hit">

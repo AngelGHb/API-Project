@@ -36,9 +36,9 @@ function calculateScore(cards) {
 }
 
 app.set("view engine", "ejs");
-app.set("views", join(__dirname, "views"));
+app.set("views", join(__dirname, "src/views"));
+app.use(express.static(join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
 
 // HOME
 app.get("/", (req, res) => {
@@ -47,6 +47,7 @@ app.get("/", (req, res) => {
 
 // START A NEW GAME
 app.post("/play", async (req, res) => {
+  console.log('button clicked')
   try {
     const deckResponse = await axios.get(API_URL + "new/shuffle/?deck_count=1");
     const deckId = deckResponse.data.deck_id;
